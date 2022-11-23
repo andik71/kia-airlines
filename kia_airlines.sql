@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 17, 2022 at 03:11 PM
+-- Generation Time: Nov 23, 2022 at 02:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -20,6 +20,28 @@ SET time_zone = "+00:00";
 --
 -- Database: `kia_airlines`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
+  `fullname` varchar(100) NOT NULL,
+  `username` varchar(100) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `user_role` enum('admin','manager','staff') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`id`, `fullname`, `username`, `password`, `user_role`) VALUES
+(1, 'Sharkia Amalia', 'admin', 'admin', 'admin'),
+(2, 'Andika Dwiyanto', 'user', 'user', 'staff');
 
 -- --------------------------------------------------------
 
@@ -120,6 +142,13 @@ INSERT INTO `user_flights` (`id`, `user_id`, `flight_id`, `seat`) VALUES
 --
 
 --
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `username` (`username`);
+
+--
 -- Indexes for table `flights`
 --
 ALTER TABLE `flights`
@@ -149,6 +178,12 @@ ALTER TABLE `user_flights`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `flights`
