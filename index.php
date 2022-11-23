@@ -1,6 +1,11 @@
 <?php
+session_start(); //memulai session
 // Koneksi Database
 include_once 'core/database.php';
+// Models
+include_once 'models/Maskapai_M.php';
+include_once 'models/Penerbangan_M.php';
+include_once 'models/User_Flight_M.php';
 // Routing
 include_once 'header.php'; // Template Start
 

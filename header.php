@@ -1,3 +1,9 @@
+<?php 
+if (isset($_SESSION['ADMIN'])) {
+    $sesi = $_SESSION['ADMIN'];
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -28,12 +34,15 @@
     <!-- Template Main CSS File -->
     <link href="assets/css/style.css" rel="stylesheet">
 
+    <!-- DATA TABLE JQUERY -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/dataTables.bootstrap5.min.css">
+
     <!-- =======================================================
-  * Template Name: Mentor - v4.9.1
-  * Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+* Template Name: Mentor - v4.9.1
+* Template URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
+* Author: BootstrapMade.com
+* License: https://bootstrapmade.com/license/
+======================================================== -->
 </head>
 
 <body>
@@ -48,16 +57,35 @@
 
             <nav id="navbar" class="navbar order-last order-lg-0">
                 <ul>
-                    <li><a class="<?php if($_REQUEST && $_REQUEST['page'] == 'home'):?>active<?php endif; ?>" href="index.php">Home</a></li>
-                    <li><a class="<?php if($_REQUEST && $_REQUEST['page'] == 'penerbangan') echo 'active' ?>" href="index.php?page=penerbangan">Flight</a></li>
-                    <li><a class="<?php if($_REQUEST && $_REQUEST['page'] == 'about') echo 'active' ?>" href="index.php?page=about">About</a></li>
-                    <li><a class="<?php if($_REQUEST && $_REQUEST['page'] == 'contact') echo 'active' ?>" href="index.php?page=contact">Contact</a></li>
+                    <li><a class="<?php if ($_REQUEST && $_REQUEST['page'] == 'home') : ?>active<?php endif; ?>" href="index.php">Home</a></li>
+                    <li><a class="<?php if ($_REQUEST && $_REQUEST['page'] == 'ticket') echo 'active' ?>" href="index.php?page=ticket">Buy Ticket</a></li>
+                    <li><a class="<?php if ($_REQUEST && $_REQUEST['page'] == 'about') echo 'active' ?>" href="index.php?page=about">About</a></li>
+                    <li><a class="<?php if ($_REQUEST && $_REQUEST['page'] == 'contact') echo 'active' ?>" href="index.php?page=contact">Contact</a></li>
+                    <!-- Authentications -->
+                    <?php
+                    if (isset($sesi)) {
+                    ?>
+                        <li class="dropdown"><a href="#"><span>Master Data</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a class="<?php if ($_REQUEST && $_REQUEST['page'] == 'penerbangan') : ?>active<?php endif; ?>" href="index.php?page=penerbangan">Flights</a></li>
+                                <li><a class="<?php if ($_REQUEST && $_REQUEST['page'] == 'maskapai') : ?>active<?php endif; ?>" href="index.php?page=maskapai">Planes</a></li>
+                                <li><a class="<?php if ($_REQUEST && $_REQUEST['page'] == 'transaksi') : ?>active<?php endif; ?>" href="index.php?page=transaksi">Transaction</a></li>
+                                <li><a href="index.php?page=logout">Log Out</a></li>
+                            </ul>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <i class="bi bi-list mobile-nav-toggle"></i>
             </nav><!-- .navbar -->
 
-            <a href="index.php" class="get-started-btn">Login</a>
+            <!-- Authentications -->
+            <?php
+            if (!isset($sesi)) {
+            ?>
+                <a href="index.php?page=login" class="get-started-btn">Login</a>
+            <?php } else { ?>
+                <a class="get-started-btn"><?= $sesi['fullname'] ?></a>
+            <?php } ?>
 
         </div>
     </header><!-- End Header -->
-
