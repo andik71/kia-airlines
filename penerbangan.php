@@ -14,7 +14,7 @@
   <section id="flights" class="flights">
       <div class="container" data-aos="fade-up">
 
-      <table class="table table-bordered table-hover" id="myTable"> 
+      <table class="table table-bordered table-hover data" id="myTable"> 
         <thead class="bg-dark text-light">
             <tr>
                 <th>#</th>
